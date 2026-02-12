@@ -6,6 +6,11 @@ import Homepage from './Homepage'
 import Task1 from './Task1'
 import D2Task1 from './Task/D2Task1'
 import D2Task2 from './Task/D2Task2'
+import Array_map from './Task3/Array_map'
+import Array_filter from './Task3/Array_filter'
+import Array_map_Image from './Task3/Array_map_Image'
+import Array_map_image_info from './Task3/Array_map_image_info'
+import Task3 from './Task3/Task3'
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -13,7 +18,12 @@ function App() {
 
   return (
     <>
-      <D2Task2/>
+      {/* <D2Task2/> */}
+      {/* <Array_map/>
+      <Array_filter/>
+      <Array_map_Image/>
+      <Array_map_image_info/> */}
+      <Task3/>
       {/* <D2Task1/> */}
       {/* <Task1/> */}
 

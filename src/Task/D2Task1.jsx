@@ -4,7 +4,7 @@ import D2Taskcomponent from './D2Taskcomponent'
 function D2Task1() {
   return (
     <div className='min-h-screen py-10 px-6 place-items-center bg-neutral-100'>
-        <div className='text-4xl font-bold text-shadow-lg/20 hover:scale-102 text-center text-black my-10' >
+        <div className='text-2xl sm:text-4xl font-bold text-shadow-lg/20 hover:scale-102 text-center text-black my-10' >
             Image Gallery
         </div>
 
