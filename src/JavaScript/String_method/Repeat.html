@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>JavaScript Strings</h1>
+    <h2>The repeat() and replace() Method</h2>
+
+    <p id="demo"></p>
+    <p id="demo1"></p>
+
+    <script>
+        let text = "Heyyy! <br><br>";
+        let result = text.repeat(5);
+        let replace= text.replace("Hey","Hello");
+
+        document.getElementById("demo").innerHTML = "repeat() returns a new string with a number of copies of a string : <br><br>" + result + "<br> Replace the string : " + replace;
+
+        let replaceall = "Please visit W3school and W3school."
+        replaceall = replaceall.replaceAll("W3school","Microsoft");
+
+        document.getElementById("demo1").innerHTML = replaceall;
+    </script>
+
+</body>
+</html>

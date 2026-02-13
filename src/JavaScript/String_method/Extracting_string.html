@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        
+    <h1>JavaScript Strings</h1>
+    <h2>The slice() Method</h2>
+
+    <p id="demo"></p>
+    <p id="demo1"></p>
+
+    <script>
+
+        //slice(start,end)
+        let text = "How Are You ???";
+        let part = text.slice(7,13);
+        let part1 = text.slice(7);
+        let part2 = text.slice(-12);
+        let part3 = text.slice(-12, -6);
+
+        document.getElementById("demo").innerHTML = "The sliced (extracted) part of the string is : "+ part + "<br><br>Extract a part of a string from position 7: " + "<br><br> Extract a part of a string counting from the end : " + part2 + "<br><br> Extract a part of a string and return the extracted parts in a new string:" + part3; 
+
+        //substring(start,end)
+        let str = "Apple, Banana, Kiwi";
+        document.getElementById("demo1").innerHTML = "The substring() method extract a part of a string and returns the extracted parts in a new string : "+str.substring(15,19)+
+        "<br><br> Using substr() : " + str.substr(7,6);//substr(start,length)
+
+    </script>
+
+</body>
+</html>

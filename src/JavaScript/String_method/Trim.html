@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>JavaScript Strings</h1>
+    <h2>The trim() and pad() Method</h2>
+
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+
+    <script>
+    //trim()
+    let text1 = "     Hello World!     ";
+    let text2 = text1.trim();
+    let text3 = text1.trimStart();
+    let text4 = text1.trimEnd();
+
+
+    document.getElementById("demo").innerHTML ="Length text1 = " + text1.length + "<br>Length text2 = " + text2.length + "<br><br>Using trimStart() length of the string : "+ text3.length + "<br><br>Using trimEnd() length of the string: "+text4.length;
+
+
+    //padstart()
+    let text = "3";
+    text = text.padStart(4,"0");
+    document.getElementById("demo1").innerHTML = "The padStart() method pads a string from the start. : "+text;
+
+    //padEnd()
+    let txt = "7";
+    txt = txt.padEnd(4,"x");
+    document.getElementById("demo2").innerHTML = "The padStart() method pads a string from the start. : "+txt;
+    </script>
+
+
+    
+
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        
+    <h1>JavaScript Strings</h1>
+
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+
+    <script>
+
+        //length()
+        let text = "Hello world!!!!";
+        document.getElementById("demo").innerHTML = "Length of the string : "+text.length;
+
+        // CharAt()
+        let text1 = "Good Morning!!";
+        let char=text1.charAt(5);
+        document.getElementById("demo1").innerHTML = "charater at given position in a string using charAt(): "+char;
+
+        // CharCodeAt()
+        let char1 = text.charCodeAt(0);
+        document.getElementById("demo2").innerHTML = "returns the unicode of the character at a given position in a string using charCodeAt: "+char1;
+
+        // At()
+        let letter = text1.at(2);
+        let letter1 = text1[5];
+        document.getElementById("demo3").innerHTML = "charater at given position in a string using at(): "+letter+" and access using [] :"+letter1;
+
+
+
+    </script>
+
+</body>
+</html>
