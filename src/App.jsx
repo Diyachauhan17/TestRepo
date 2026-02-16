@@ -2,6 +2,7 @@ import { useState } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import './App.css'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Homepage from './Homepage'
 import Task1 from './Task1'
 import D2Task1 from './Task/D2Task1'
@@ -11,19 +12,44 @@ import Array_filter from './Task3/Array_filter'
 import Array_map_Image from './Task3/Array_map_Image'
 import Array_map_image_info from './Task3/Array_map_image_info'
 import Task3 from './Task3/Task3'
+import Contact from './Contact';
+import Navbar from './Navbar';
+import { createContext } from 'react';
+import Home from './Home';
+export const UserContext = createContext();
 
 function App() {
   // const [count, setCount] = useState(0)
   // const String = "Diya"
+  
+  const str="hello from App";
+
 
   return (
     <>
+      <div className="App">
+        <Router>
+        <Navbar />
+      
+        <UserContext.Provider value={str}>
+          <h1>{`Hii ${str}!`}</h1>
+        <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/Task3/Task3" element={<Task3 />} />
+        <Route path="/Contact" element={<Contact/>} />
+        <Route path="*" element={<h1> PAGE NOT FOUND</h1>} />
+        </Routes>
+        </UserContext.Provider>
+        
+        </Router>
+      </div>
+
       {/* <D2Task2/> */}
       {/* <Array_map/>
       <Array_filter/>
       <Array_map_Image/>
       <Array_map_image_info/> */}
-      <Task3/>
+      {/* <Task3/> */}
       {/* <D2Task1/> */}
       {/* <Task1/> */}
 

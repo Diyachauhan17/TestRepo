@@ -1,49 +1,58 @@
 import React from 'react'
+import TV1 from './Products/TV1.jpg'
+import TV2 from "./Products/TV2.jpg"
+import TV3 from "./Products/TV3.jpg"
+import Mobile1 from "./Products/Mobile1.jpg"
+import Mobile2 from "./Products/Mobile2.jpg"
+import Mobile3 from "./Products/Mobile3.jpg"
+import AC1 from "./Products/AC1.jpg"
+import AC2 from "./Products/AC2.jpg"
+import AC3 from "./Products/AC3.jpg"
 
 function Task3() {
     const images=[
         {
-            image:'./src/Task3/Products/TV1.jpg',
+            image:TV1,
             category:"Television",
             index:1,
         },
         {
-            image:"./src/Task3/Products/TV2.jpg",
+            image:TV2,
             category:"Television",
             index:2,
         },
         {
-            image:'./src/Task3/Products/TV3.jpg',
+            image:TV3,
             category:"Television",
             index:3,
         },
         {
-            image:"./src/Task3/Products/Mobile1.jpg",
+            image:Mobile1,
             category:"Mobile",
             index:3,
         },
         {
-            image:"./src/Task3/Products/Mobile2.jpg",
+            image:Mobile2,
             category:"Mobile",
             index:5,
         },
         {
-            image:"./src/Task3/Products/Mobile3.jpg",
+            image:Mobile3,
             category:"Mobile",
             index:4,
         },
         {
-            image:"./src/Task3/Products/AC1.jpg",
+            image:AC1,
             category:"Air Conditioner",
             index:5,
         },
         {
-            image:"./src/Task3/Products/AC2.jpg",
+            image:AC2,
             category:"Air Conditioner",
             index:7,
         },
         {
-            image:"./src/Task3/Products/AC3.jpg",
+            image:AC3,
             category:"Air Conditioner",
             index:6,
         }    
@@ -54,10 +63,10 @@ function Task3() {
 
   return (
     <div className='place-items-center m-2.5 p-2 text-black'>
-        <h1 className='text-5xl font-bold py-3 text-shadow-amber-900 text-shadow-lg/40 '>E-commerce Page</h1>
+        <h1 className='text-3xl sm:text-4xl md:text-5xl font-bold py-3 text-shadow-amber-900 text-shadow-lg/40 '>E-commerce Page</h1>
 
         
-        <div className='text-3xl text-blue-950 font-bold py-3 text-shadow-gray-600 text-shadow-lg/40 '>Products</div>
+        <div className='text-2xl sm:text-3xl text-blue-950 font-bold py-3 text-shadow-gray-600 text-shadow-lg/40 '>Products</div>
 
         {/* TV section */}
         <div class="place-items-center shadow-cyan-950 shadow-md bg-blue-100 m-6 mb-10 rounded-2xl p-2 text-black">

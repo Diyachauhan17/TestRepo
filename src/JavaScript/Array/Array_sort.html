@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>JavaScript Arrays</h1>
+    <h2>The sort() Method</h2>
+
+    <p>The sort() method sorts an array alphabetically:</p>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+
+    <h2>The toSorted() Method</h2>
+    <p id="demo"></p>
+
+    <h2>The toreversed() Method</h2>
+    <p id="toreversed"></p>
+<hr>
+    <h1>Numeric Sort</h1>
+    <p id="numsort"></p>
+    <p id="numsort1"></p>
+    <p id="reversesort"></p>
+
+<script>
+    const fruits = ["Banana", "Orange", "Apple", "Mango"];
+    document.getElementById("demo1").innerHTML = "Original Array : "+fruits;
+
+    fruits.sort();
+    document.getElementById("demo2").innerHTML = "After Sorting the array : " + fruits + "<br><br> Reverse the array : " +fruits.reverse();
+
+    const months = ["Jan", "Feb", "Mar", "Apr"];
+    const sorted = months.toSorted();
+    document.getElementById("demo").innerHTML = sorted;
+
+    const reversed = months.toReversed();
+    document.getElementById("toreversed").innerHTML = reversed;
+
+    //numeric sort
+    const points = [40, 100, 1, 5, 25, 10];
+    document.getElementById("numsort").innerHTML = "Original Array : "+points;  
+
+    points.sort(function(a, b){return a - b});
+    document.getElementById("numsort1").innerHTML = "After sorting the array : " +points;
+
+    points.sort(function(a, b){return b - a});
+    document.getElementById("reversesort").innerHTML = "After sorting the array in Descending Order : " +points;
+
+</script>
+</body>
+</html>

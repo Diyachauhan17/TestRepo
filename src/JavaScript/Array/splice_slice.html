@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>JavaScript Arrays</h1>
+    <h2>The splice() Method</h2>
+
+    <p>The splice() method adds new elements to an array:</p>
+
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+    <h2>Remove any element</h2>
+    <p id="demo4"></p>
+
+    <h2>The Slice() method</h2>
+    <p id="slice"></p>
+
+    <h2>The tostring() method</h2>
+    <p id="tostring"></p>
+
+    <script>
+    const fruits = ["Banana", "Orange", "Apple", "Mango"];
+    document.getElementById("demo1").innerHTML = "Original Array:<br> " + fruits;
+    let removed = fruits.splice(2, 2, "Lemon", "Kiwi"); 
+    document.getElementById("demo2").innerHTML = "New Array:<br>" + fruits;
+    document.getElementById("demo3").innerHTML = "Removed Items:<br> " + removed; 
+
+    const fruit = ["Banana", "Orange", "Apple", "Mango"];
+    fruit.splice(0, 1);
+    document.getElementById("demo4").innerHTML = fruit; 
+
+    const citrus = fruits.slice(2);
+    document.getElementById("slice").innerHTML = "Original Array : "+fruits+"<br><br>slice the array : "+citrus; // fruits.slice(1, 3);
+
+    document.getElementById("tostring").innerHTML = fruits.toString();
+
+
+</script>
+</body>
+</html>

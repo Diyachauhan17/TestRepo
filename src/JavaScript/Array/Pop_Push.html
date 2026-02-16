@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>JavaScript Arrays</h1>
+    <hr style="padding: 2;size: 20px;"/>
+    <h2>The pop() and push() Method</h2>
+
+
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+
+    <p id="demo3"></p>
+
+    <h2>Shift() and Unshift() Method</h2>
+
+    <p id="shift"></p>
+    <p id="demo4"></p>
+    <p id="unshift"></p>
+
+    <h2>Change Element</h2>
+
+    <p id="change_element"></p>
+    <p id="length"></p>
+
+    <h2>isArray() method</h2>
+
+    <p id="isarray"></p>
+
+    <h2>delete array element</h2>
+
+    <p id="delete"></p>
+
+    
+
+    <script>
+        const Colors = ["Yellow" , "Green" , "Red" , "Blue"];
+        document.getElementById("demo1").innerHTML = "Array of colors : "+Colors;
+        Colors.pop();
+        document.getElementById("demo2").innerHTML = "Pop last element : " +Colors;
+
+        
+        Colors.push("Pink");
+        document.getElementById("demo3").innerHTML ="Push pink color : "+ Colors;
+
+        document.getElementById("shift").innerHTML ="shift the color : "+ Colors.shift();
+        document.getElementById("demo4").innerHTML ="After the shift : "+ Colors;
+
+        Colors.unshift("White");
+        document.getElementById("unshift").innerHTML ="After the unshift : "+ Colors;
+
+        Colors[0] = "Black";
+        document.getElementById("change_element").innerHTML ="change first element: "+ Colors;
+
+        Colors[Colors.length]="Yellow";
+        document.getElementById("length").innerHTML ="using length property: "+ Colors;
+
+        document.getElementById("isarray").innerHTML = Array.isArray(Colors);
+
+        delete Colors[0];
+        document.getElementById("delete").innerHTML = Colors;
+
+    </script>
+
+</body>
+</html>

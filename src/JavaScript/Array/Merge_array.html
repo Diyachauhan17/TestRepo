@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>JavaScript Arrays</h1>
+    <h2>The concat() Method</h2>
+
+    <p>The concat() method</p>
+    <p id="demo"></p>
+
+    <h2>Merging three array</h2>
+    <p id="Merge"></p>
+
+    <h2>The copyWithin() Method</h2>
+    <p id="copywithin"></p>
+    <p id="copywithin1"></p>
+
+    <h2>Flatting an Array</h2>
+    <p id="flat"></p>
+    <h2>Flatting an Array using flatMap</h2>
+    <p id="arraymap"></p>
+
+    <script>
+    const Color1 = ["Black", "White","Blue"];
+    const Color2 = ["Red", "Yellow", "Pink"];
+    const Colors = Color1.concat(Color2);
+
+    document.getElementById("demo").innerHTML =Colors;
+
+    document.getElementById("Merge").innerHTML =Color1.concat(Color2, Colors);
+
+    document.getElementById("copywithin").innerHTML = Colors.copyWithin(2,0);
+    document.getElementById("copywithin1").innerHTML = Colors.copyWithin(2,0,2);
+
+    const myArr = [[1,2],[3,4],[5,6]];
+    const newArr = myArr.flat();
+    const aaraymap = newArr.flatMap(x => [x, x * 10]);
+
+    document.getElementById("flat").innerHTML = "original Array : "+JSON.stringify(myArr)+"<br><br>flatting an array : "+newArr; //JSON.stringify(newArr)
+    document.getElementById("arraymap").innerHTML = aaraymap;
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>JavaScript Arrays</h1>
+    <h2>The length Property</h2>
+
+    <p id="demo"></p>
+
+    <h2>Set the length Property</h2>
+    <p id="demo1"></p>
+
+    <h2>Array to string</h2>
+    <p id="demo2"></p>
+
+    <h2>at() method</h2>
+    <p id="demo3"></p> 
+
+    <h2>join() method</h2>
+    <p id="demo4"></p> 
+
+    <script>
+        const Colors = ["Green", "Red", "Blue", "Orange"];
+        let size = Colors.length;
+        document.getElementById("demo").innerHTML = "Length of array : "+size;
+
+        Colors.length=2
+        document.getElementById("demo1").innerHTML = "Set the Length of array : "+Colors;
+
+        const fruits = ["Banana", "Orange", "Apple", "Mango"];
+        let myList = fruits.toString();
+        document.getElementById("demo2").innerHTML = "Array to String: "+myList;
+
+        let fruit=fruits.at(3);
+        let fruit1 = fruits[2];
+        document.getElementById("demo3").innerHTML = "position of array  element: "+fruit+ "<br> <br> using [] : " +fruit1;
+
+        const frts = ["Mango", "Kiwi", "Apple", "Banana"];
+        document.getElementById("demo4").innerHTML = "join the Array element : "+frts.join(" | ");
+
+    </script>
+</body>
+</html>

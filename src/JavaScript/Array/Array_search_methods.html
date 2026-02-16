@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>JavaScript Arrays</h1>
+    <hr>    
+    <h3>The indexOf() Method</h3>
+    <p id="indexof"></p>
+
+    <h3>The LastindexOf() Method</h3>
+    <p id="lastindexof"></p>
+
+    <h3>The LastindexOf() Method</h3>
+    <p id="includes"></p>
+
+    <h3>The Find() Method</h3>
+    <p id="find"></p>
+
+    <h3>The Findlast() Method</h3>
+    <p id="findlast"></p>
+    
+    <script>
+    const fruits = ["Apple", "Orange", "Apple", "Mango"];
+    let position = fruits.indexOf("Orange") + 1;
+    
+    document.getElementById("indexof").innerHTML = "Orange is found in position " + position;
+
+    let position1 = fruits.lastIndexOf("Apple") + 1;
+    document.getElementById("lastindexof").innerHTML = "Apple is found in position " + position1;
+
+    document.getElementById("includes").innerHTML = "check mango is in Array : "+fruits.includes("Mango");
+
+
+    const numbers = [4, 9, 16, 25, 29,27, 28, 30, 40, 42, 35, 30];
+    let first = numbers.find(myFunction);
+    document.getElementById("find").innerHTML = "First number over 18 is :" + first+"<br><br>First number over 18 has index : "+numbers.findIndex(myFunction);
+    function myFunction(value, index, array) 
+    {
+        return value > 18;
+    }
+
+    let high = numbers.findLast(x => x > 40);
+    document.getElementById("findlast").innerHTML = "The last number over 40 was " + high+"<br><br>in positon : "+ numbers.findLastIndex(x => x > 40);
+
+
+    </script>
+</body>
+</html>
