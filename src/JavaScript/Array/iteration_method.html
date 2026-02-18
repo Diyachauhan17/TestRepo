@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>JavaScript Arrays</h1>
+    <hr>
+    <h2>The every() Method</h2>
+    <p id="every"></p>
+
+    <h2>The some() Method</h2>
+    <p id="some"></p>
+
+    <h2>The from() Method</h2>
+    <p id="from"></p>
+
+    <script>
+    const numbers = [45, 40, ,16, 19,18, 25];
+    let allOver18 = numbers.every(myFunction);
+
+    document.getElementById("every").innerHTML = "All over 18 is " + allOver18;
+
+    function myFunction(value) {
+    return value > 18;
+    }
+
+    let someOver18 = numbers.some(funsome);
+
+    function funsome(value, index, array) {
+    return value > 18;
+    }
+    document.getElementById("some").innerHTML = "All over 18 is " + someOver18;
+
+
+    let text = "ABCDEFG";
+    const myArr = Array.from(text);
+    document.getElementById("from").innerHTML = myArr;
+
+    </script>
+</body>
+</html>
