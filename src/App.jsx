@@ -1,94 +1,166 @@
-import { useState } from 'react'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Sign_Up from './Sign_Up';
+import Login from './Login';
+import Dashboard from './Dashboard';
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        {/* Redirects base URL to signup */}
+        <Route path="/" element={<Navigate to="/signup" replace />} />
+        <Route path="/signup" element={<Sign_Up />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        
+        {/* Catch-all route to prevent blank screens on bad URLs */}
+        <Route path="*" element={<Navigate to="/login" replace />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export { App };
+
+
+/*import { Routes, Route } from 'react-router-dom'
+import { useEffect } from 'react' 
+import { useCart } from './context/CartContext' 
+import Home from './pages/Home'
+import Fruits from './pages/Fruits'
+import Vegetables from './pages/Vegetables'
+import Pulses from './pages/Pulses'
+import Cart from './pages/Cart'
+import About from './pages/About'
+import Payment from './pages/Payment'
+import ProductDetails from './pages/ProductDetails'
+
+
+function App() {
+  const { cart } = useCart()
+
+  
+  useEffect(() => {
+    if (cart.length > 0) {
+      document.title = `(${cart.length}) Cart | Organic Market`
+    } else {
+      document.title = "Organic Market - Fresh & Healthy"
+    }
+  }, [cart]) 
+
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/fruits" element={<Fruits />} />
+      <Route path="/vegetables" element={<Vegetables />} />
+      <Route path="/pulses" element={<Pulses />} />
+      <Route path="/cart" element={<Cart />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/payment" element={<Payment />} />
+      <Route path="/product/:name" element={<ProductDetails />} />
+    </Routes>
+  )
+}
+
+export default App*/
+
+
+
+
+
+/*import { useState } from "react";
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Homepage from './Homepage'
-import Task1 from './Task1'
-import D2Task1 from './Task/D2Task1'
-import D2Task2 from './Task/D2Task2'
-import Array_map from './Task3/Array_map'
-import Array_filter from './Task3/Array_filter'
-import Array_map_Image from './Task3/Array_map_Image'
-import Array_map_image_info from './Task3/Array_map_image_info'
-import Task3 from './Task3/Task3'
-import Contact from './Contact';
-import Navbar from './Navbar';
-import { createContext } from 'react';
-import Home from './Home';
+import Homepage from "./Homepage";
+import Task1 from "./Task1";
+import D2Task1 from "./Task/D2Task1";
+import D2Task2 from "./Task/D2Task2";
+import Array_map from "./Task3/Array_map";
+import Array_filter from "./Task3/Array_filter";
+import Array_map_Image from "./Task3/Array_map_Image";
+import Array_map_image_info from "./Task3/Array_map_image_info";
+import Task3 from "./Task3/Task3";
+import Contact from "./Contact";
+import Navbar from "./Navbar";
+import { createContext } from "react";
+import Home from "./Home";
 export const UserContext = createContext();
-import { useEffect } from 'react';
-import Change_val from './Task5/Change_val';
-import Update_counter from './Task5/Update_counter';
-import Change_image from './Task5/Change_image';
-import Change_Style from './Task5/Change_Style';
-import UseEffect from './Task5/UseEffect';
-import Task5 from './Task5/Task5';
-import Task5_ex from './Task5/Task5_ex';
-import Alert_msg from './Task5/Alert_msg';
-import React_Event_object from './Task5/React_Event_object';
-import If_statement from './Task5/If_statement';
-import Logical_operator from './Task5/Logical_operator';
-import Ternary_operator from './Task5/Ternary_operator';
-
+import { useEffect } from "react";
+import Change_val from "./Task5/Change_val";
+import Update_counter from "./Task5/Update_counter";
+import Change_image from "./Task5/Change_image";
+import Change_Style from "./Task5/Change_Style";
+import UseEffect from "./Task5/UseEffect";
+import Task5 from "./Task5/Task5";
+import Task5_ex from "./Task5/Task5_ex";
+import Alert_msg from "./Task5/Alert_msg";
+import React_Event_object from "./Task5/React_Event_object";
+import If_statement from "./Task5/If_statement";
+import Logical_operator from "./Task5/Logical_operator";
+import Ternary_operator from "./Task5/Ternary_operator";
+import Temp from "./Temp";
+import Sign_Up from "./Sign_Up";
+import Login from "./Login";
+import Dashboard from "./Dashboard";
 
 function App() {
   // const [count, setCount] = useState(0)
   // const String = "Diya"
-  
-  const str="hello from App";
-  
+
+  const str = "hello from App";
 
   return (
     <>
-    
-      {/* <Change_val/> 
+      {/*     
+      <Change_val/> 
       <Update_counter/> 
       <Change_image/>
       <Change_Style/>
       <UseEffect/>
       <Task5/>
-      <Task5_ex/> */}
-      {/* <Alert_msg/> */}
-      {/* <React_Event_object/> */}
-      {/* <If_statement/><If_statement isMatch={true}/> */}
-      <Logical_operator/>
-      <Ternary_operator/>
+      <Task5_ex/>
+      <Alert_msg/>
+      <React_Event_object/>
+      <If_statement/> <If_statement isMatch={true}/> */
+      {/* <Logical_operator/>
+      <Ternary_operator/> */}
+      {/* <Temp /> */}
 
-      {/* <div className="App">
-        <Router>
-        <Navbar />
-      
+      //<div className="App">
+        //<Router>
+        {/* <Navbar /> */}
+{/*       
         <UserContext.Provider value={str}>
-          <h1>{`Hii ${str}!`}</h1>
-        <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Task3/Task3" element={<Task3 />} />
+          <h1>{`Hii ${str}!`}</h1> */}
+        //<Routes>
+       // <Route path="/" element={<Sign_Up />} />
+       // <Route path="/login" element={<Login />} />
+        //<Route path="/posts" element={<Dashboard />} />
+        {/* <Route path="/Task3/Task3" element={<Task3 />} />
         <Route path="/Contact" element={<Contact/>} />
-        <Route path="*" element={<h1> PAGE NOT FOUND</h1>} />
-        </Routes>
-        </UserContext.Provider>
+        <Route path="*" element={<h1> PAGE NOT FOUND</h1>} /> */}
+        //</Routes>
+        {/* </UserContext.Provider> */}
         
-        </Router>
-      </div> */}
+        //</Router>
+     // </div>
 
-      
+      {/* <Task3/>
+      <Array_map_image_info/>
+      <Array_map_Image/>
+      <Array_filter/>
+      <Array_map/>
+      <D2Task2/>
+      <D2Task1/>
+      <Task1/> */}
+    //</>
+//);
+//}
 
-      {/* <Task3/> */}
-      {/* <Array_map_image_info/> */}
-      {/* <Array_map_Image/> */}
-      {/* <Array_filter/> */}
-      {/* <Array_map/> */}
-      {/* <D2Task2/> */}
-      {/* <D2Task1/> */}
-      {/* <Task1/> */}
-     
-    </>
-  )
-}
-
-export { App }
-
+//export { App };
 
 //  import { useState } from 'react'
 // // import reactLogo from './assets/react.svg'
@@ -98,15 +170,12 @@ export { App }
 //         <img class="text-center" height='200px' width='300px' src='https://images.unsplash.com/photo-1615829253947-faef9cf73097?ixlib=rb4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit
 // =crop&w=1170&q=80'/>
 //         <p className='para font-bold text-3xl m-5'>Nature</p>
-//       </div> 
-
-
-
+//       </div>
 
 //       <Homepage str=' Diya'/>
-//       <Homepage str=' Good Morning'/> 
-//        <Homepage name='Diya' Age='21'/> 
-      
+//       <Homepage str=' Good Morning'/>
+//        <Homepage name='Diya' Age='21'/>
+
 //        <div className="min-h-screen py-10 px-6 bg-neutral-100">
 //         <h1 className="text-4xl font-bold text-shadow-lg/20 hover:scale-102 text-center text-black my-10">Departments</h1>
 
@@ -119,4 +188,3 @@ export { App }
 
 //         </div>
 //       </div>
- 

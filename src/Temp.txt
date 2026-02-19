@@ -1,0 +1,304 @@
+import React, { useEffect, useState } from "react";
+
+function Temp() {
+  const [users, setUsers] = useState([]);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [editId, setEditId] = useState();
+
+  const API = "https://jsonplaceholder.typicode.com/users";
+
+  // GET
+  const getUsers = async () => {
+    const res = await fetch(API);
+    const data = await res.json();
+    setUsers(data.slice(0, 5));
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, []);
+
+  // ADD USER
+  const addUser = async () => {
+    if (!name || !email) return alert("Enter all fields");
+
+    if (editId) {
+      // SAVE UPDATE
+      setUsers((prev) =>
+        prev.map((user) =>
+          user.id === editId ? { ...user, name, email } : user
+        )
+      );
+      setEditId(null);
+    } else {
+      // POST
+      const res = await fetch(API, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email }),
+      });
+
+      const newUser = await res.json();
+      setUsers([...users, { ...newUser, id: Date.now() }]);
+    }
+
+    setName("");
+    setEmail("");
+  };
+
+  // DELETE
+  const deleteUser = async (id) => {
+    await fetch(`${API}/${id}`, { method: "DELETE" });
+    setUsers(users.filter((user) => user.id !== id));
+  };
+
+  // EDIT
+  const editUser = (user) => {
+    setName(user.name);
+    setEmail(user.email);
+    setEditId(user.id);
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-100 flex justify-center items-center p-6">
+      <div className="bg-white shadow-xl rounded-2xl w-full max-w-2xl p-6">
+        <h2 className="text-2xl font-bold text-center mb-6 text-gray-700">
+          CRUD Operations
+        </h2>
+
+        {/* Input */}
+        <div className="flex gap-3 mb-6">
+          <input
+            type="text"
+            placeholder="Enter Name"
+            className="border rounded-lg px-3 py-2 w-1/2 focus:ring-2 focus:ring-blue-400"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+
+          <input
+            type="email"
+            placeholder="Enter Email"
+            className="border rounded-lg px-3 py-2 w-1/2 focus:ring-2 focus:ring-blue-400"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+
+          <button
+            onClick={addUser}
+            className={`px-4 py-2 rounded-lg text-white transition ${
+              editId
+                ? "bg-green-500 hover:bg-green-600"
+                : "bg-blue-500 hover:bg-blue-600"
+            }`}
+          >
+            {editId ? "Save" : "Add"}
+          </button>
+        </div>
+
+        {/* List */}
+        <div className="space-y-4">
+          {users.map((user) => (
+            <div
+              key={user.id}
+              className="flex justify-between items-center bg-gray-50 p-4 rounded-lg shadow-sm"
+            >
+              <div>
+                <p className="font-semibold">{user.name}</p>
+                <p className="text-sm text-gray-500">{user.email}</p>
+              </div>
+
+              <div className="flex gap-2">
+                <button
+                  onClick={() => editUser(user)}
+                  className="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded-lg text-sm"
+                >
+                  Edit
+                </button>
+
+                <button
+                  onClick={() => deleteUser(user.id)}
+                  className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg text-sm"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Temp;
+
+
+
+===================================================================================
+
+
+
+
+import React, { useEffect, useState } from "react";
+
+function Temp() {
+  const [users, setUsers] = useState([]);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [editId, setEditId] = useState(null);
+
+  const API = "https://jsonplaceholder.typicode.com/users";
+
+  // GET USERS
+  async function getUsers() {
+    const res = await fetch(API);
+    const data = await res.json();
+    setUsers(data.slice(0, 5));
+  }
+
+  useEffect(function () {
+    getUsers();
+  }, []);
+
+  // ADD OR UPDATE USER
+  async function addUser() {
+    if (!name || !email) {
+      alert("Enter all fields");
+      return;
+    }
+
+    if (editId) {
+      // UPDATE (local update)
+      setUsers(function (prev) {
+        return prev.map(function (user) {
+          if (user.id === editId) {
+            return { ...user, name: name, email: email };
+          } else {
+            return user;
+          }
+        });
+      });
+
+      setEditId(null);
+    } else {
+      // POST
+      const res = await fetch(API, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: name, email: email }),
+      });
+
+      const newUser = await res.json();
+
+      setUsers(function (prev) {
+        return [...prev, { ...newUser, id: Date.now() }];
+      });
+    }
+
+    setName("");
+    setEmail("");
+  }
+
+  // DELETE
+  async function deleteUser(id) {
+    await fetch(API + "/" + id, { method: "DELETE" });
+
+    setUsers(function (prev) {
+      return prev.filter(function (user) {
+        return user.id !== id;
+      });
+    });
+  }
+
+  // EDIT
+  function editUser(user) {
+    setName(user.name);
+    setEmail(user.email);
+    setEditId(user.id);
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-100 flex justify-center items-center p-6">
+      <div className="bg-white shadow-xl rounded-2xl w-full max-w-2xl p-6">
+        <h2 className="text-2xl font-bold text-center mb-6 text-gray-700">
+          CRUD Operations
+        </h2>
+
+        {/* Input */}
+        <div className="flex gap-3 mb-6">
+          <input
+            type="text"
+            placeholder="Enter Name"
+            className="border rounded-lg px-3 py-2 w-1/2 focus:ring-2 focus:ring-blue-400"
+            value={name}
+            onChange={function (e) {
+              setName(e.target.value);
+            }}
+          />
+
+          <input
+            type="email"
+            placeholder="Enter Email"
+            className="border rounded-lg px-3 py-2 w-1/2 focus:ring-2 focus:ring-blue-400"
+            value={email}
+            onChange={function (e) {
+              setEmail(e.target.value);
+            }}
+          />
+
+          <button
+            onClick={addUser}
+            className={`px-4 py-2 rounded-lg text-white transition ${
+              editId
+                ? "bg-green-500 hover:bg-green-600"
+                : "bg-blue-500 hover:bg-blue-600"
+            }`}
+          >
+            {editId ? "Save" : "Add"}
+          </button>
+        </div>
+
+        {/* List */}
+        <div className="space-y-4">
+          {users.map(function (user) {
+            return (
+              <div
+                key={user.id}
+                className="flex justify-between items-center bg-gray-50 p-4 rounded-lg shadow-sm"
+              >
+                <div>
+                  <p className="font-semibold">{user.name}</p>
+                  <p className="text-sm text-gray-500">{user.email}</p>
+                </div>
+
+                <div className="flex gap-2">
+                  <button
+                    onClick={function () {
+                      editUser(user);
+                    }}
+                    className="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded-lg text-sm"
+                  >
+                    Edit
+                  </button>
+
+                  <button
+                    onClick={function () {
+                      deleteUser(user.id);
+                    }}
+                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg text-sm"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Temp;
