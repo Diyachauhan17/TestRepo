@@ -1,79 +1,8 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Sign_Up from './Sign_Up';
-import Login from './Login';
-import Dashboard from './Dashboard';
-
-function App() {
-  return (
-    <Router>
-      <Routes>
-        {/* Redirects base URL to signup */}
-        <Route path="/" element={<Navigate to="/signup" replace />} />
-        <Route path="/signup" element={<Sign_Up />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        
-        {/* Catch-all route to prevent blank screens on bad URLs */}
-        <Route path="*" element={<Navigate to="/login" replace />} />
-      </Routes>
-    </Router>
-  );
-}
-
-export { App };
-
-
-/*import { Routes, Route } from 'react-router-dom'
-import { useEffect } from 'react' 
-import { useCart } from './context/CartContext' 
-import Home from './pages/Home'
-import Fruits from './pages/Fruits'
-import Vegetables from './pages/Vegetables'
-import Pulses from './pages/Pulses'
-import Cart from './pages/Cart'
-import About from './pages/About'
-import Payment from './pages/Payment'
-import ProductDetails from './pages/ProductDetails'
-
-
-function App() {
-  const { cart } = useCart()
-
-  
-  useEffect(() => {
-    if (cart.length > 0) {
-      document.title = `(${cart.length}) Cart | Organic Market`
-    } else {
-      document.title = "Organic Market - Fresh & Healthy"
-    }
-  }, [cart]) 
-
-  return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/fruits" element={<Fruits />} />
-      <Route path="/vegetables" element={<Vegetables />} />
-      <Route path="/pulses" element={<Pulses />} />
-      <Route path="/cart" element={<Cart />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/payment" element={<Payment />} />
-      <Route path="/product/:name" element={<ProductDetails />} />
-    </Routes>
-  )
-}
-
-export default App*/
-
-
-
-
-
-/*import { useState } from "react";
+import { useState } from "react";
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Form } from "react-router-dom";
 import Homepage from "./Homepage";
 import Task1 from "./Task1";
 import D2Task1 from "./Task/D2Task1";
@@ -114,40 +43,36 @@ function App() {
 
   return (
     <>
-      {/*     
-      <Change_val/> 
-      <Update_counter/> 
-      <Change_image/>
-      <Change_Style/>
-      <UseEffect/>
-      <Task5/>
-      <Task5_ex/>
-      <Alert_msg/>
-      <React_Event_object/>
-      <If_statement/> <If_statement isMatch={true}/> */
+      {/* <Change_val />
+      <Update_counter />
+      <Change_image />
+      <Change_Style />
+      <UseEffect />
+      <Task5 />
+      <Task5_ex />
+      <Alert_msg />
+      <React_Event_object />
+      <If_statement /> <If_statement isMatch={true} />  */}
       {/* <Logical_operator/>
       <Ternary_operator/> */}
       {/* <Temp /> */}
-
-      //<div className="App">
-        //<Router>
-        {/* <Navbar /> */}
-{/*       
+      <div className="App">
+        <Router>
+          {/* <Navbar /> */}
+          {/*       
         <UserContext.Provider value={str}>
           <h1>{`Hii ${str}!`}</h1> */}
-        //<Routes>
-       // <Route path="/" element={<Sign_Up />} />
-       // <Route path="/login" element={<Login />} />
-        //<Route path="/posts" element={<Dashboard />} />
-        {/* <Route path="/Task3/Task3" element={<Task3 />} />
+          <Routes>
+            <Route path="/" element={<Sign_Up />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/posts" element={<Dashboard />} />
+            {/* <Route path="/Task3/Task3" element={<Task3 />} />
         <Route path="/Contact" element={<Contact/>} />
         <Route path="*" element={<h1> PAGE NOT FOUND</h1>} /> */}
-        //</Routes>
-        {/* </UserContext.Provider> */}
-        
-        //</Router>
-     // </div>
-
+          </Routes>
+          {/* </UserContext.Provider> */}
+        </Router>
+      </div>
       {/* <Task3/>
       <Array_map_image_info/>
       <Array_map_Image/>
@@ -156,13 +81,14 @@ function App() {
       <D2Task2/>
       <D2Task1/>
       <Task1/> */}
-    //</>
-//);
-//}
+    </>
+  );
+}
 
-//export { App };
+export { App };
 
-//  import { useState } from 'react'
+// {
+  /* //  import { useState } from 'react'
 // // import reactLogo from './assets/react.svg'
 // // import viteLogo from '/vite.svg'
 // import './App.css'
@@ -187,4 +113,5 @@ function App() {
 //           <Task1 Title="Computer Science" Description="Computer Engineering with ML & AI at Silver Oak University is a 4-year undergraduate specialization programme that presents a solid foundation in the principles and technologies to get on the path of an exciting, sprouting career." />
 
 //         </div>
-//       </div>
+//       </div> */
+// }

@@ -1,63 +1,132 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate, Link } from "react-router-dom";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 function Login() {
   const navigate = useNavigate();
-  const [loginData, setLoginData] = useState({ email: '', password: '' });
-  const [status, setStatus] = useState('idle');
+  const [status, setStatus] = useState("idle");
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setStatus('loading');
+  // ✅ Formik Setup
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
 
-    try {
-      const response = await fetch('https://amazing-big-spider.ngrok-free.app/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(loginData),
-      });
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .email("Invalid email format")
+        .required("Email is required"),
+      password: Yup.string()
+        .min(6, "Minimum 6 characters")
+        .required("Password is required"),
+    }),
 
-      const data = await response.json();
+    onSubmit: async (values) => {
+      setStatus("loading");
 
-      if (response.ok) {
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
+      try {
+        const response = await axios.post(
+          "https://amazing-big-spider.ngrok-free.app/login",
+          values,
+          { headers: { "Content-Type": "application/json" } }
+        );
 
-        setStatus('success');
-        setTimeout(() => navigate('/dashboard'), 1000);
-      } else {
-        setStatus('error');
+        if (response.status === 200 || response.data.token) {
+          localStorage.setItem("token", response.data.token);
+
+          const fetchedName =
+            response.data.user?.name || response.data.name;
+          const fallbackName = values.email.split("@")[0];
+
+          localStorage.setItem(
+            "userName",
+            fetchedName || fallbackName
+          );
+
+          setStatus("success");
+          setTimeout(() => navigate("/posts"), 800);
+        } else {
+          setStatus("error");
+        }
+      } catch (error) {
+        setStatus("error");
       }
-    } catch (error) {
-      console.error(error);
-      setStatus('error');
-    }
-  };
+    },
+  });
 
   return (
     <div style={styles.pageBackground}>
       <div style={styles.card}>
-        <h2 style={styles.title}>Welcome Back 👋</h2>
-        <p style={styles.subtitle}>Log in to access your dashboard</p>
+        <div style={styles.header}>
+          <h2 style={styles.title}>Welcome Back</h2>
+          <p style={styles.subtitle}>
+            Sign in to continue to your dashboard
+          </p>
+        </div>
 
-        <form onSubmit={handleLogin}>
+        {/* ✅ Formik Form */}
+        <form onSubmit={formik.handleSubmit}>
           <div style={styles.inputGroup}>
-            <label style={styles.label}>Email</label>
-            <input style={styles.input} type="email" name="email" value={loginData.email} onChange={(e) => setLoginData({...loginData, email: e.target.value})} required />
+            <label style={styles.label}>Email Address</label>
+            <input
+              style={styles.input}
+              type="email"
+              name="email"
+              placeholder="abc@example.com"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+            {formik.touched.email && formik.errors.email && (
+              <div style={styles.errorText}>
+                {formik.errors.email}
+              </div>
+            )}
           </div>
+
           <div style={styles.inputGroup}>
             <label style={styles.label}>Password</label>
-            <input style={styles.input} type="password" name="password" value={loginData.password} onChange={(e) => setLoginData({...loginData, password: e.target.value})} required />
+            <input
+              style={styles.input}
+              type="password"
+              name="password"
+              placeholder="••••••••"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+            {formik.touched.password && formik.errors.password && (
+              <div style={styles.errorText}>
+                {formik.errors.password}
+              </div>
+            )}
           </div>
-          <button type="submit" disabled={status === 'loading'} style={styles.button}>
-            {status === 'loading' ? 'Logging in...' : 'Log In 🚀'}
+
+          <button
+            type="submit"
+            disabled={status === "loading"}
+            style={styles.button}
+          >
+            {status === "loading"
+              ? "Verifying..."
+              : "Login Securely"}
           </button>
         </form>
 
-        {status === 'error' && <p style={styles.errorMsg}>❌ Invalid Email or Password</p>}
+        {status === "error" && (
+          <div style={styles.errorBox}>
+            Invalid Email or Password. Please try again.
+          </div>
+        )}
 
         <p style={styles.footerText}>
-          Don't have an account? <Link to="/signup" style={styles.link}>Sign up</Link>
+          Don't have an account?{" "}
+          <Link to="/" style={styles.link}>
+            Sign up here
+          </Link>
         </p>
       </div>
     </div>
@@ -66,29 +135,88 @@ function Login() {
 
 const styles = {
   pageBackground: {
-    display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh',
-    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', 
-    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    minHeight: "100vh",
+    background: "#f4f7f6",
+    fontFamily: "'Inter', sans-serif",
   },
   card: {
-    backgroundColor: 'rgba(255, 255, 255, 0.95)', padding: '40px', borderRadius: '20px',
-    boxShadow: '0 15px 35px rgba(0,0,0,0.2)', width: '100%', maxWidth: '400px', textAlign: 'center',
-    backdropFilter: 'blur(10px)'
+    backgroundColor: "#fff",
+    padding: "40px 35px",
+    borderRadius: "12px",
+    boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
+    width: "100%",
+    maxWidth: "380px",
   },
-  title: { margin: '0 0 5px 0', color: '#333', fontSize: '28px', fontWeight: 'bold' },
-  subtitle: { color: '#666', marginBottom: '25px', fontSize: '14px' },
-  inputGroup: { textAlign: 'left', marginBottom: '20px' },
-  label: { display: 'block', marginBottom: '8px', fontWeight: '600', color: '#555', fontSize: '14px' },
-  input: { width: '100%', padding: '12px 15px', borderRadius: '10px', border: '2px solid #eee', fontSize: '16px', boxSizing: 'border-box', outline: 'none' },
+  header: { textAlign: "center", marginBottom: "30px" },
+  title: {
+    margin: "0 0 8px 0",
+    color: "#111827",
+    fontSize: "24px",
+    fontWeight: "700",
+  },
+  subtitle: {
+    margin: 0,
+    color: "#6b7280",
+    fontSize: "14px",
+  },
+  inputGroup: { textAlign: "left", marginBottom: "20px" },
+  label: {
+    display: "block",
+    marginBottom: "6px",
+    fontWeight: "600",
+    fontSize: "13px",
+    color: "#374151",
+  },
+  input: {
+    width: "100%",
+    padding: "12px 14px",
+    borderRadius: "8px",
+    border: "1px solid #d1d5db",
+    boxSizing: "border-box",
+    fontSize: "15px",
+    outline: "none",
+  },
   button: {
-    width: '100%', padding: '14px', border: 'none', borderRadius: '10px',
-    background: 'linear-gradient(to right, #ff416c, #ff4b2b)', 
-    color: 'white', fontSize: '16px', fontWeight: 'bold', cursor: 'pointer', marginTop: '10px',
-    boxShadow: '0 4px 15px rgba(255, 65, 108, 0.4)'
+    width: "100%",
+    padding: "12px",
+    borderRadius: "8px",
+    border: "none",
+    background: "#4f46e5",
+    color: "white",
+    fontWeight: "600",
+    fontSize: "15px",
+    cursor: "pointer",
+    marginTop: "10px",
   },
-  errorMsg: { color: '#e74c3c', marginTop: '15px', fontWeight: 'bold' },
-  footerText: { marginTop: '20px', fontSize: '14px', color: '#555' },
-  link: { color: '#764ba2', fontWeight: 'bold', textDecoration: 'none' }
+  errorBox: {
+    marginTop: "15px",
+    padding: "10px",
+    backgroundColor: "#fee2e2",
+    color: "#dc2626",
+    borderRadius: "6px",
+    fontSize: "13px",
+    textAlign: "center",
+    fontWeight: "500",
+  },
+  errorText: {
+    color: "#dc2626",
+    fontSize: "12px",
+    marginTop: "5px",
+  },
+  footerText: {
+    marginTop: "25px",
+    fontSize: "14px",
+    color: "#6b7280",
+    textAlign: "center",
+  },
+  link: {
+    color: "#4f46e5",
+    fontWeight: "600",
+    textDecoration: "none",
+  },
 };
 
 export default Login;
